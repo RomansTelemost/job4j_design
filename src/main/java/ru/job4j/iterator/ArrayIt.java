@@ -11,6 +11,10 @@ public class ArrayIt implements Iterator<Integer> {
         this.data = data;
     }
 
+    public static void main(String[] args) {
+        System.out.println();
+    }
+
     @Override
     public boolean hasNext() {
         return point < data.length;
