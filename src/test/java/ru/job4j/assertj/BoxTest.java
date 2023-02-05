@@ -69,7 +69,7 @@ class BoxTest {
     }
 
     @Test
-    void whenVertexIsGreaterThen0ThenNumberOfVerticesIsLessThen_0() {
+    void whenVertexIsGreaterThen0ThenNumberOfVerticesIsLessThen0() {
         Box box = new Box(3, 5);
         assertThat(box.getNumberOfVertices())
                 .isNotPositive()
@@ -77,7 +77,7 @@ class BoxTest {
     }
 
     @Test
-    void whenVertexIsLessThen0ThenNumberOfVerticesIsLessThen_0() {
+    void whenVertexIsLessThen0ThenNumberOfVerticesIsLessThen0() {
         Box box = new Box(-4, 5);
         assertThat(box.getNumberOfVertices())
                 .isNotPositive()
