@@ -49,6 +49,6 @@ class SimpleConvertTest {
         assertThat(map).hasSize(4)
                 .contains(Map.entry("first", 0))
                 .contains(Map.entry("five", 4))
-                .doesNotContain(Map.entry("two",0));
+                .doesNotContain(Map.entry("two", 0));
     }
 }
