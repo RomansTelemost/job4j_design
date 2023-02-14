@@ -47,7 +47,7 @@ public class SimpleLinkedList<E> implements LinkedList<E> {
                 if (cacheModCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
-                return index < size;
+                return currentNode != null;
             }
 
             @Override
@@ -55,7 +55,9 @@ public class SimpleLinkedList<E> implements LinkedList<E> {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                return get(index++);
+                E val = currentNode.item;
+                currentNode = currentNode.next;
+                return val;
             }
         };
     }
