@@ -59,6 +59,19 @@ class ForwardLinkedTest {
     }
 
     @Test
+    void whenAddFirstAndDeleteFirstThenOk() {
+        assertThat(list).containsExactly(1, 2);
+        list.addFirst(3);
+        assertThat(list).containsExactly(3, 1, 2);
+        list.deleteFirst();
+        assertThat(list).containsExactly(1, 2);
+        list.deleteFirst();
+        assertThat(list).containsExactly(2);
+        list.deleteFirst();
+        assertThat(list).isEmpty();
+    }
+
+    @Test
     void whenAddAndDeleteFirstThenOk() {
         assertThat(list).containsExactly(1, 2);
         list.add(3);
@@ -77,6 +90,15 @@ class ForwardLinkedTest {
         assertThat(list).isEmpty();
         assertThatThrownBy(list::deleteFirst)
                 .isInstanceOf(NoSuchElementException.class);
+    }
+
+    @Test
+    void whenHasIteratorAndAddFirstThenHasNextExceptionThrown() {
+        Iterator<Integer> it = list.iterator();
+        assertThat(it.hasNext()).isTrue();
+        list.addFirst(5);
+        assertThatThrownBy(it::hasNext)
+                .isInstanceOf(ConcurrentModificationException.class);
     }
 
     @Test
