@@ -4,11 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class SimpleSetTest {
+class SimpleSetExampleTest {
 
     @Test
     void when4AddAndAddFirstThenFalse() {
-        SimpleSet set = new SimpleSet();
+        SimpleSetExample set = new SimpleSetExample();
         set.add("first");
         set.add("second");
         set.add("third");

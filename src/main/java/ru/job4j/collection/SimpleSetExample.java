@@ -3,7 +3,7 @@ package ru.job4j.collection;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class SimpleSet {
+public class SimpleSetExample {
 
     private String[] container = new String[2];
     private int size;
