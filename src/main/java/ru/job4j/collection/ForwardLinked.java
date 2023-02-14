@@ -53,7 +53,7 @@ public class ForwardLinked<T> implements Iterable<T> {
         return new Iterator<T>() {
             int cacheModCount = modCount;
             Node<T> currentNode = head;
-            int index = 0;
+
             @Override
             public boolean hasNext() {
                 if (cacheModCount != modCount) {
