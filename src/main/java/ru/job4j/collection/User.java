@@ -1,8 +1,6 @@
 package ru.job4j.collection;
 
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class User {
 
@@ -57,5 +55,21 @@ public class User {
                 hashCode1, hash1, bucket1);
         System.out.printf("userStepan - хешкод: %s, хэш: %s, бакет: %s",
                 hashCode2, hash2, bucket2);
+        List<? super Object> s = new ArrayList<>();
+        s.add("as");
+        Set<Integer> ss =  new TreeSet<>(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return 0;
+            }
+        });
+        System.out.println("***");
+        ss.add(1);
+        ss.add(2);
+        ss.add(1);
+        System.out.println(ss);
+        int a = 10;
+        System.out.println(a << 1);
+
     }
 }
