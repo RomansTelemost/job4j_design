@@ -38,6 +38,25 @@ public class User {
         this.birthday = birthday;
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, children, birthday);
+    }
+
+    @Override
+    public boolean equals(Object u) {
+        if (this == u) {
+            return true;
+        }
+        if (u == null || getClass() != u.getClass()) {
+            return false;
+        }
+        User user = (User) u;
+        return name == user.name
+                && children == user.children
+                && birthday == user.birthday;
+    }
+
     public static void main(String[] args) {
         Map<User, Object> map = new HashMap<>(16);
         Calendar calendar = Calendar.getInstance();
@@ -57,7 +76,7 @@ public class User {
                 hashCode2, hash2, bucket2);
         List<? super Object> s = new ArrayList<>();
         s.add("as");
-        Set<Integer> ss =  new TreeSet<>(new Comparator<Integer>() {
+        Set<Integer> ss = new TreeSet<>(new Comparator<Integer>() {
             @Override
             public int compare(Integer o1, Integer o2) {
                 return 0;
