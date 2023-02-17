@@ -61,8 +61,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
     public V get(K key) {
         int index = getIndexBucket(key);
         V rsl = null;
-        if (table[index] != null && Objects.hashCode(key) == Objects.hashCode(table[index].key)
-                && Objects.equals(key, table[index].key)) {
+        if (checkKeys(key, index)) {
             rsl = table[index].value;
         }
         return rsl;
@@ -72,7 +71,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
     public boolean remove(K key) {
         int index = getIndexBucket(key);
         boolean rsl = false;
-        if (table[index] != null) {
+        if (checkKeys(key, index)) {
             table[index] = null;
             count--;
             modCount++;
@@ -107,6 +106,11 @@ public class SimpleMap<K, V> implements Map<K, V> {
                 return table[in++].key;
             }
         };
+    }
+
+    private boolean checkKeys(K key, int index) {
+        return table[index] != null && Objects.hashCode(key) == Objects.hashCode(table[index].key)
+                && Objects.equals(key, table[index].key);
     }
 
     private static class MapEntry<K, V> {
