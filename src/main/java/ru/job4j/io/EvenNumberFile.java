@@ -13,9 +13,16 @@ public class EvenNumberFile {
                 text.append((char) val);
             }
             String[] lines = text.toString().split(System.lineSeparator());
+            text.replace(0, text.length(), "");
             for (String line : lines) {
                 int number = Integer.parseInt(line);
-                System.out.printf("Number %d is %s" + System.lineSeparator(), number, number % 2 == 0 ? "even" : "odd");
+                StringBuilder evenOrOddText = new StringBuilder();
+                evenOrOddText.append("Number ")
+                        .append(number)
+                        .append(" is ")
+                        .append(number % 2 == 0 ? "even" : "odd")
+                        .append(System.lineSeparator());
+                System.out.print(evenOrOddText);
             }
         } catch (IOException exception) {
             exception.printStackTrace();
