@@ -14,7 +14,7 @@ public class LogFilter {
             while (bufferedReader.ready()) {
                 String line = bufferedReader.readLine();
                 String[] lines = line.split(" ");
-                if (lines[lines.length - 2].equals("404")) {
+                if ("404".equals(lines[lines.length - 2])) {
                     result.add(line);
                 }
             }
@@ -27,6 +27,6 @@ public class LogFilter {
     public static void main(String[] args) {
         LogFilter logFilter = new LogFilter();
         List<String> log = logFilter.filter("data/log.txt");
-        System.out.println(log);
+        log.forEach(System.out::println);
     }
 }
