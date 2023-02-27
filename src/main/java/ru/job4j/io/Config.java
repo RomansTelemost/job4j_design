@@ -23,12 +23,15 @@ public class Config {
                     && !line.startsWith("#")) {
                     StringBuilder sb = new StringBuilder();
                     String[] keyAndValue = line.split("=");
-                    if (keyAndValue.length != 2) {
+                    if (keyAndValue.length == 2
+                            && !keyAndValue[keyAndValue.length - 2].isBlank()
+                            && !keyAndValue[keyAndValue.length - 1].isBlank()) {
+                        String[] key = keyAndValue[0].split("\\.");
+                        values.put(key[key.length - 1], keyAndValue[keyAndValue.length - 1]);
+                    } else {
                         sb.append("In line \'").append(line).append("\'").append(" not found key or value!");
                         throw new IllegalArgumentException(sb.toString());
                     }
-                    String[] key = keyAndValue[0].split("\\.");
-                    values.put(key[key.length - 1], keyAndValue[keyAndValue.length - 1]);
                 }
             });
         } catch (IOException e) {
