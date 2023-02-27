@@ -22,9 +22,8 @@ public class Config {
                 if (!line.isEmpty()
                     && !line.startsWith("#")) {
                     StringBuilder sb = new StringBuilder();
-                    String[] keyAndValue = line.split("=");
-                    if (keyAndValue.length == 2
-                            && !keyAndValue[keyAndValue.length - 2].isBlank()
+                    String[] keyAndValue = line.split("=", 2);
+                    if (!keyAndValue[keyAndValue.length - 2].isBlank()
                             && !keyAndValue[keyAndValue.length - 1].isBlank()) {
                         String[] key = keyAndValue[0].split("\\.");
                         values.put(key[key.length - 1], keyAndValue[keyAndValue.length - 1]);
