@@ -22,10 +22,6 @@ public class Config {
                 if (!line.isEmpty()
                     && !line.startsWith("#")) {
                     StringBuilder sb = new StringBuilder();
-                    if (!line.contains("=")) {
-                        sb.append("In line \'").append(line).append("\'").append(" not found symbol '='!");
-                        throw new IllegalArgumentException(sb.toString());
-                    }
                     String[] keyAndValue = line.split("=");
                     if (keyAndValue.length != 2) {
                         sb.append("In line \'").append(line).append("\'").append(" not found key or value!");
