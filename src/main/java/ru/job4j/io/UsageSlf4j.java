@@ -21,7 +21,8 @@ public class UsageSlf4j {
         double d = 5.4d;
         float f = 6.6f;
         boolean bool = true;
+        char c = 'c';
         LOG.debug("User info name : {}, age : {}", name, age);
-        LOG.debug("Byte : {}, short : {}, int : {}, long : {}, double : {}, float : {}, bool : {}", b, s, age, l, d, f, bool);
+        LOG.debug("Byte : {}, short : {}, int : {}, long : {}, double : {}, float : {}, char : {}, bool : {}", b, s, age, l, d, f, c, bool);
     }
 }
