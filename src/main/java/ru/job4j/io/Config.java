@@ -3,6 +3,7 @@ package ru.job4j.io;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringJoiner;
@@ -19,20 +20,20 @@ public class Config {
     public void load() {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))) {
             bufferedReader.lines().forEach(line -> {
-                if (!line.isEmpty()
-                    && !line.startsWith("#")) {
-                    StringBuilder sb = new StringBuilder();
-                    String[] keyAndValue = line.split("=", 2);
-                    if (!keyAndValue[keyAndValue.length - 2].isBlank()
-                            && !keyAndValue[keyAndValue.length - 1].isBlank()) {
-                        String[] key = keyAndValue[0].split("\\.");
-                        values.put(key[key.length - 1], keyAndValue[keyAndValue.length - 1]);
-                    } else {
-                        sb.append("In line \'").append(line).append("\'").append(" not found key or value!");
-                        throw new IllegalArgumentException(sb.toString());
-                    }
+                if (line.isEmpty()
+                        || line.startsWith("#")) {
+                    return;
                 }
-            });
+                StringBuilder sb = new StringBuilder();
+                String[] keyAndValue = line.split("=", 2);
+                if (keyAndValue.length != 2
+                        || keyAndValue[0].isBlank()
+                        || keyAndValue[1].isBlank()) {
+                    sb.append("In line \'").append(line).append("\'").append(" not found key or value!");
+                    throw new IllegalArgumentException(sb.toString());
+                }
+                values.put(keyAndValue[0], keyAndValue[1]);
+        });
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -54,6 +55,11 @@ public class Config {
     }
 
     public static void main(String[] args) {
+
+        String s = "s2";
+        String[] ss = s.split("=", 2);
+        Arrays.stream(ss).forEach(System.out::println);
+
         Config config = new Config("./data/pair_with_comment.properties");
         config.load();
 
