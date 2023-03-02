@@ -1,5 +1,7 @@
 package ru.job4j.generics;
 
+import ru.job4j.serialization.java.Contact;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -11,10 +13,21 @@ public class Person {
 
     private Date birthday;
 
+    private Contact contact;
+
+    private String[] statuses;
+
     public Person(String name, int age, Date birthday) {
         this.name = name;
         this.age = age;
         this.birthday = birthday;
+    }
+
+    public Person(String name, int age, Contact contact, String[] statuses) {
+        this.name = name;
+        this.age = age;
+        this.contact = contact;
+        this.statuses = statuses;
     }
 
     public String getName() {
