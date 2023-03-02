@@ -12,9 +12,14 @@ public class Main {
                 new String[] {"Worker", "Married"});
 
         /* Преобразуем объект person в json-строку. */
-        final Gson gson = new GsonBuilder().create();
-        System.out.println(gson.toJson(person));
+        final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String s = gson.toJson(person);
+        System.out.println(s);
+        System.out.println("***");
 
+        Person p = gson.fromJson(s, Person.class);
+        System.out.println(p);
+        System.out.println("***");
         /* Модифицируем json-строку */
         final String personJson =
                 "{"
@@ -22,6 +27,7 @@ public class Main {
                         + "\"age\":35,"
                         + "\"contact\":"
                         + "{"
+                        + "\"zipCode\":1,"
                         + "\"phone\":\"+7(924)111-111-11-11\""
                         + "},"
                         + "\"statuses\":"
