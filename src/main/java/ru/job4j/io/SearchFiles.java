@@ -13,7 +13,7 @@ public class SearchFiles implements FileVisitor<Path> {
 
     private Predicate<Path> predicate;
 
-    List<Path> paths = new ArrayList<>();
+    private List<Path> paths = new ArrayList<>();
 
     public List<Path> getPaths() {
         return paths;
