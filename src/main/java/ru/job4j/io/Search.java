@@ -25,12 +25,12 @@ public class Search {
 
     private static void validateIncomingParameters(String[] args) throws InvalidObjectException {
         if (args.length != 2) {
-            throw new InvalidObjectException("Not found 2 parameters. Root folder and extension.");
+            throw new IllegalArgumentException("Not found 2 parameters. Root folder and extension.");
         }
         File file = Path.of(args[0]).toFile();
         if (!file.exists()
                 || !file.isDirectory()) {
-            throw new InvalidObjectException("Path to root folder is invalid.");
+            throw new IllegalArgumentException("Path to root folder is invalid.");
         }
         if (args[1].isBlank()
                 || !args[1].startsWith(".")
