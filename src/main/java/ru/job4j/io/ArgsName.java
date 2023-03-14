@@ -29,20 +29,20 @@ public class ArgsName {
         Optional<String> optionalStringWithDash = Arrays.stream(args).filter(
                 string -> !string.startsWith("-")).findFirst();
         if (optionalStringWithDash.isPresent()) {
-            throw new IllegalArgumentException("Error: This argument '" + optionalStringWithDash.get() + "' does not start with a '-' character");
+            throw new IllegalArgumentException(String.format("Error: This argument '%s' does not start with a '-' character", optionalStringWithDash.get()));
         }
         Optional<String> optionalStringWithEquals = Arrays.stream(args).filter(
                 string -> !string.contains("=")).findFirst();
         if (optionalStringWithEquals.isPresent()) {
-            throw new IllegalArgumentException("Error: This argument '" + optionalStringWithEquals.get() + "' does not contain an equal sign");
+            throw new IllegalArgumentException(String.format("Error: This argument '%s' does not contain an equal sign", optionalStringWithEquals.get()));
         }
         Arrays.stream(args).forEach(string -> {
             String[] pair = string.split("=", 2);
             if (pair[0].length() == 1) {
-                throw new IllegalArgumentException("Error: This argument '" + string + "' does not contain a key");
+                throw new IllegalArgumentException(String.format("Error: This argument '%s' does not contain a key", string));
             }
             if (pair[1].length() == 0) {
-                throw new IllegalArgumentException("Error: This argument '" + string + "' does not contain a value");
+                throw new IllegalArgumentException(String.format("Error: This argument '%s' does not contain a value", string));
             }
         });
     }
