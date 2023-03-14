@@ -1,9 +1,9 @@
 package ru.job4j.io;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InvalidObjectException;
 import java.nio.file.Files;
-import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -27,9 +27,9 @@ public class Search {
         if (args.length != 2) {
             throw new InvalidObjectException("Not found 2 parameters. Root folder and extension.");
         }
-        try {
-            Paths.get(args[0]);
-        } catch (InvalidPathException e) {
+        File file = Path.of(args[0]).toFile();
+        if (!file.exists()
+                || !file.isDirectory()) {
             throw new InvalidObjectException("Path to root folder is invalid.");
         }
         if (args[1].isBlank()
