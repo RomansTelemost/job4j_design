@@ -2,7 +2,6 @@ package ru.job4j.io;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InvalidObjectException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -23,7 +22,7 @@ public class Search {
         return searcher.getPaths();
     }
 
-    private static void validateIncomingParameters(String[] args) throws InvalidObjectException {
+    private static void validateIncomingParameters(String[] args) {
         if (args.length != 2) {
             throw new IllegalArgumentException("Not found 2 parameters. Root folder and extension.");
         }
