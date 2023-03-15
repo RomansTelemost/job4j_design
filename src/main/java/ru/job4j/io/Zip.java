@@ -37,8 +37,7 @@ public class Zip {
         ArgsName argsName = ArgsName.of(args);
         checkArgs(argsName);
 
-        List<Path> paths = Search.search(Path.of(argsName.get("d")), predicate -> !predicate.endsWith(argsName.get("e")));
-        System.out.println(paths);
+        List<Path> paths = Search.search(Path.of(argsName.get("d")), predicate -> !predicate.toFile().getName().endsWith(argsName.get("e")));
         Zip zip = new Zip();
         zip.packFiles(paths, Path.of(argsName.get("o")).toFile());
         /**
@@ -53,9 +52,9 @@ public class Zip {
         if (!Files.isDirectory(Path.of(argsName.get("d")))) {
             throw new IllegalArgumentException("Parameter 'd' must contain path to directory!");
         }
-        if (argsName.get("e").startsWith(".")
+        if (!argsName.get("e").startsWith(".")
                 || argsName.get("e").length() < 2) {
-            throw new IllegalArgumentException("Parameter 'e' must begin from '.' and length must bigger then 1 symbol!");
+            throw new IllegalArgumentException("Parameter 'e' must begin from '.' and length must bigger than 1 symbol!");
         }
         if (!argsName.get("o").endsWith(".zip")) {
             throw new IllegalArgumentException("Parameter 'o' must have '.zip' extension!");
