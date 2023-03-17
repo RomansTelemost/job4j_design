@@ -1,0 +1,14 @@
+User asking : Идти
+Bot answering : Да
+User asking : или еще задачу
+Bot answering : Да
+User asking : тогда делаю задачу
+Bot answering : Возможно
+User asking : стоп
+User asking : а теперь что делать
+User asking : продолжить
+User asking : хорошо ли жить
+Bot answering : Нет
+User asking : странный ответ
+Bot answering : Возможно
+User asking : закончить
