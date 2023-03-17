@@ -32,9 +32,7 @@ public class UsageEncoding {
                 "Еще новая строка 102",
                 "And row in english"
         );
-        //for (String str : strings) {
-            encoding.writeDataInFile(path, strings);
-        //}
+        encoding.writeDataInFile(path, strings);
         String s = encoding.readFile(path);
         System.out.println("Данные из файла: ");
         System.out.println(s);
