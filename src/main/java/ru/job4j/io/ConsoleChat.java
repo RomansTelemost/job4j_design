@@ -1,9 +1,6 @@
 package ru.job4j.io;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,18 +25,18 @@ public class ConsoleChat {
         try (Scanner scanner = new Scanner(System.in)) {
             String userQuestion = "";
             boolean hasRespond = true;
-            while (!userQuestion.equalsIgnoreCase(OUT)) {
+            while (!OUT.equalsIgnoreCase(userQuestion)) {
                 userQuestion = scanner.nextLine();
                 log.add(String.format("User asking : %s", userQuestion));
-                if (userQuestion.equalsIgnoreCase(OUT)) {
+                if (OUT.equalsIgnoreCase(userQuestion)) {
                     saveLog(log);
                     continue;
                 }
-                if (userQuestion.equalsIgnoreCase(STOP)) {
+                if (STOP.equalsIgnoreCase(userQuestion)) {
                     hasRespond = false;
                     continue;
                 }
-                if (userQuestion.equalsIgnoreCase(CONTINUE)) {
+                if (CONTINUE.equalsIgnoreCase(userQuestion)) {
                     hasRespond = true;
                     continue;
                 }
@@ -67,11 +64,8 @@ public class ConsoleChat {
     }
 
     private void saveLog(List<String> log) {
-        try (FileWriter fileWriter = new FileWriter(path, StandardCharsets.UTF_8, false)) {
-            for (String string : log) {
-                fileWriter.write(string);
-                fileWriter.write(System.lineSeparator());
-            }
+        try (PrintWriter printWriter = new PrintWriter(new BufferedOutputStream(new FileOutputStream(path, false)))) {
+            log.forEach(printWriter::println);
         } catch (IOException e) {
             e.printStackTrace();
         }
