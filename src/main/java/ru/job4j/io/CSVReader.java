@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Path;
 import java.util.*;
 
 public class CSVReader {
@@ -67,17 +68,18 @@ public class CSVReader {
     }
 
     private static void validateIncomingParameters(ArgsName argsName) {
-        if (argsName.get("path") == null) {
-            throw new IllegalArgumentException("Path parameter is not found!");
+        if (!Path.of(argsName.get("path")).toFile().getName().endsWith(".csv")) {
+            throw new IllegalArgumentException("Path parameter is not correct!");
         }
-        if (argsName.get("delimiter") == null) {
-            throw new IllegalArgumentException("Delimiter parameter is not found!");
+        if (!(argsName.get("delimiter").equalsIgnoreCase(";")
+                || argsName.get("delimiter").equalsIgnoreCase(","))) {
+            throw new IllegalArgumentException("Delimiter parameter is not correct!");
         }
-        if (argsName.get("out") == null) {
-            throw new IllegalArgumentException("Out parameter is not found!");
+        if (argsName.get("out").length() == 0) {
+            throw new IllegalArgumentException("Out parameter is not correct!");
         }
-        if (argsName.get("filter") == null) {
-            throw new IllegalArgumentException("Filter parameter is not found!");
+        if (argsName.get("filter").length() == 0) {
+            throw new IllegalArgumentException("Filter parameter is not correct!");
         }
     }
 }
