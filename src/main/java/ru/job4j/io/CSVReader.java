@@ -75,7 +75,9 @@ public class CSVReader {
                 || argsName.get("delimiter").equalsIgnoreCase(","))) {
             throw new IllegalArgumentException("Delimiter parameter is not correct!");
         }
-        if (argsName.get("out").length() == 0) {
+        if (argsName.get("out").length() == 0
+                || !("stdout".equalsIgnoreCase(argsName.get("out"))
+                || Path.of(argsName.get("out")).toFile().getName().endsWith(".csv"))) {
             throw new IllegalArgumentException("Out parameter is not correct!");
         }
         if (argsName.get("filter").length() == 0) {
