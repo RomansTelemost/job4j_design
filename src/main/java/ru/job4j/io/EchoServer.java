@@ -19,8 +19,14 @@ public class EchoServer {
                     out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
                     for (String str = in.readLine(); str != null && !str.isEmpty(); str = in.readLine()) {
                         System.out.println(str);
-                        if (str.toLowerCase().contains("bye")) {
-                            server.close();
+                        if (str.contains("?msg")) {
+                            if (str.toLowerCase().contains("?msg=hello")) {
+                                out.write("Hello".getBytes());
+                            } else if (str.toLowerCase().contains("?msg=exit")) {
+                                server.close();
+                            } else {
+                                out.write("What".getBytes());
+                            }
                         }
                     }
                     out.flush();
