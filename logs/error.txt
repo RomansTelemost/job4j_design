@@ -1,0 +1,6 @@
+2023-03-20 20:40:55,879 +0300 [main] ERROR (UsageSlf4j.java:15) - error message
+2023-03-20 20:41:26,308 +0300 [main] ERROR (UsageSlf4j.java:15) - error message
+2023-03-20 20:42:40,237 +0300 [main] ERROR (UsageSlf4j.java:15) - error message
+2023-03-20 20:42:40,238 +0300 [main] ERROR (UsageSlf4j.java:29) - a = {%s}
+java.lang.ArithmeticException: / by zero
+	at ru.job4j.io.UsageSlf4j.main(UsageSlf4j.java:27)

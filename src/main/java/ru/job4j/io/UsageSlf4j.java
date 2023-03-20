@@ -22,6 +22,12 @@ public class UsageSlf4j {
         float f = 6.6f;
         boolean bool = true;
         char c = 'c';
+        int a = 0;
+        try {
+            System.out.println(1 / a);
+        } catch (ArithmeticException e) {
+            LOG.error("a = {%s}", a, e);
+        }
         LOG.debug("User info name : {}, age : {}", name, age);
         LOG.debug("Byte : {}, short : {}, int : {}, long : {}, double : {}, float : {}, char : {}, bool : {}", b, s, age, l, d, f, c, bool);
     }
