@@ -1,0 +1,14 @@
+Ex example
+java.lang.Exception: Not supported ex
+	at ru.job4j.io.UsageLog4j.main(UsageLog4j.java:12)
+debug message
+info message
+warn message
+error message
+2023-03-20 20:26:16,302 +0300 [main] ERROR (UsageLog4j.java:14) - Ex example
+java.lang.Exception: Not supported ex
+	at ru.job4j.io.UsageLog4j.main(UsageLog4j.java:12)
+2023-03-20 20:26:16,304 +0300 [main] DEBUG (UsageLog4j.java:17) - debug message
+2023-03-20 20:26:16,304 +0300 [main] INFO  (UsageLog4j.java:18) - info message
+2023-03-20 20:26:16,304 +0300 [main] WARN  (UsageLog4j.java:19) - warn message
+2023-03-20 20:26:16,304 +0300 [main] ERROR (UsageLog4j.java:20) - error message
