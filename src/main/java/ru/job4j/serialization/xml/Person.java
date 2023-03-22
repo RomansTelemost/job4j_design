@@ -1,11 +1,28 @@
 package ru.job4j.serialization.xml;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.annotation.*;
+import java.io.StringWriter;
+import java.util.Arrays;
+
+@XmlRootElement(name = "person")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Person {
 
-    private final boolean sex;
-    private final int age;
-    private final Contact contact;
-    private final String[] statuses;
+    @XmlAttribute
+    private boolean sex;
+    @XmlAttribute
+    private int age;
+    @XmlElement
+    private Contact contact;
+    @XmlElementWrapper(name = "statuses")
+    @XmlElement(name = "status")
+    private String[] statuses;
+
+    public Person() {
+    }
 
     public Person(boolean sex, int age, Contact contact, String... statuses) {
         this.sex = sex;
@@ -16,28 +33,27 @@ public class Person {
 
     @Override
     public String toString() {
-        return "<?xml version=\"1.1\" encoding=\"UTF-8\" ?>\n"
-                + "<person sex=" + sex + " age=" + age + ">\n"
-                + "    <contact phone=" + contact + "/>\n"
-                + "    <statuses>\n"
-                + getStatuses()
-                + "    </statuses>\n"
-                + "</person>";
+        return "Person{"
+                + "sex=" + sex
+                + ", age=" + age
+                + ", contact=" + contact
+                + ", statuses=" + Arrays.toString(statuses)
+                + '}';
     }
 
-    private String getStatuses() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < statuses.length; i++) {
-            stringBuilder.append("\t\t<status>");
-            stringBuilder.append(statuses[i]);
-            stringBuilder.append("</status>");
-            stringBuilder.append(System.lineSeparator());
-        }
-        return stringBuilder.toString();
-    }
-
-    public static void main(String[] args) {
+    public static void main(String[] args) throws JAXBException {
         final Person person = new Person(false, 30, new Contact("11-111"), "Worker", "Married");
-        System.out.println(person);
+
+        JAXBContext jaxbContext = JAXBContext.newInstance(Person.class);
+        Marshaller marshaller = jaxbContext.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+        try (StringWriter stringWriter = new StringWriter()) {
+            marshaller.marshal(person, stringWriter);
+            String result = stringWriter.getBuffer().toString();
+            System.out.println(result);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
