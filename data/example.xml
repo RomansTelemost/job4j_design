@@ -1,0 +1,28 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<document name="Cert" signed="true">
+    <owner>
+        <person sex="true" age="30">
+            <contact phone="11-110"/>
+            <statuses>
+                <status>Owner</status>
+                <status>Married</status>
+            </statuses>
+        </person>
+    </owner>
+    <signers>
+        <person sex="true" age="31">
+            <contact phone="11-111"/>
+            <statuses>
+                <status>Signer</status>
+                <status>Married</status>
+            </statuses>
+        </person>
+        <person sex="false" age="32">
+            <contact phone="11-112"/>
+            <statuses>
+                <status>Signer</status>
+                <status>Idle</status>
+            </statuses>
+        </person>
+    </signers>
+</document>
