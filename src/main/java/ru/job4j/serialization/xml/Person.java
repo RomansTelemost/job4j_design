@@ -21,6 +21,38 @@ public class Person {
     @XmlElement(name = "status")
     private String[] statuses;
 
+    public boolean isSex() {
+        return sex;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public String[] getStatuses() {
+        return statuses;
+    }
+
+    public void setSex(boolean sex) {
+        this.sex = sex;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
+    }
+
+    public void setStatuses(String[] statuses) {
+        this.statuses = statuses;
+    }
+
     public Person() {
     }
 
