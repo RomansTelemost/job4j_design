@@ -31,16 +31,15 @@ public class Galactic implements JsonSerializer<Galactic> {
         milkyWay.knowSystems = 584;
 
         StarSystem starSystem = new StarSystem();
-        starSystem.name = "Solar system";
-        starSystem.countOfPlanets = 8;
+        starSystem.setName("Solar system");
+        starSystem.setCountOfPlanets(8);
         Planet earthPlanet = new Planet();
-        earthPlanet.name = "Earth";
-        earthPlanet.age = 4_540_000_000L;
-        earthPlanet.landArea = 510_000_000;
-        earthPlanet.distanceFromStar = 149_000_000L;
-        earthPlanet.habitable = true;
-        starSystem.habitablePlanets = new Planet[1];
-        starSystem.habitablePlanets[0] = earthPlanet;
+        earthPlanet.setName("Earth");
+        earthPlanet.setAge(4_540_000_000L);
+        earthPlanet.setLandArea(510_000_000);
+        earthPlanet.setDistanceFromStar(149_000_000L);
+        earthPlanet.setHabitable(true);
+        starSystem.setHabitablePlanets(List.of(earthPlanet));
         milkyWay.habitableStarSystems = new StarSystem[1];
         milkyWay.habitableStarSystems[0] = starSystem;
 
@@ -52,15 +51,15 @@ public class Galactic implements JsonSerializer<Galactic> {
          * JSON Object from String
          */
         JSONObject jsonEarth = new JSONObject();
-        jsonEarth.put("name", earthPlanet.name);
-        jsonEarth.put("age", earthPlanet.age);
-        jsonEarth.put("landArea", earthPlanet.landArea);
-        jsonEarth.put("distanceFromStar", earthPlanet.distanceFromStar);
-        jsonEarth.put("habitable", earthPlanet.habitable);
+        jsonEarth.put("name", earthPlanet.getName());
+        jsonEarth.put("age", earthPlanet.getAge());
+        jsonEarth.put("landArea", earthPlanet.getLandArea());
+        jsonEarth.put("distanceFromStar", earthPlanet.getDistanceFromStar());
+        jsonEarth.put("habitable", earthPlanet.isHabitable());
 
         JSONObject jsonStarSystem = new JSONObject();
-        jsonStarSystem.put("name", starSystem.name);
-        jsonStarSystem.put("countOfPlanets", starSystem.countOfPlanets);
+        jsonStarSystem.put("name", starSystem.getName());
+        jsonStarSystem.put("countOfPlanets", starSystem.getCountOfPlanets());
         jsonStarSystem.put("habitablePlanets", new JSONArray(List.of(jsonEarth)));
 
         JSONObject jsonMilkyWay = new JSONObject("{"
