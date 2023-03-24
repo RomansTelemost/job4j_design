@@ -2,8 +2,11 @@ package ru.job4j.serialization.json;
 
 import com.google.gson.*;
 import com.google.gson.annotations.SerializedName;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.lang.reflect.Type;
+import java.util.List;
 
 public class Galactic implements JsonSerializer<Galactic> {
 
@@ -41,8 +44,31 @@ public class Galactic implements JsonSerializer<Galactic> {
         milkyWay.habitableStarSystems = new StarSystem[1];
         milkyWay.habitableStarSystems[0] = starSystem;
 
+        /**
+         * JSON Object from String
+         */
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String result = gson.toJson(milkyWay);
         java.lang.System.out.println(result);
+
+        JSONObject jsonEarth = new JSONObject();
+        jsonEarth.put("name", earthPlanet.name);
+        jsonEarth.put("age", earthPlanet.age);
+        jsonEarth.put("landArea", earthPlanet.landArea);
+        jsonEarth.put("distanceFromStar", earthPlanet.distanceFromStar);
+        jsonEarth.put("habitable", earthPlanet.habitable);
+
+        JSONObject jsonStarSystem = new JSONObject();
+        jsonStarSystem.put("name", starSystem.name);
+        jsonStarSystem.put("countOfPlanets", starSystem.countOfPlanets);
+        jsonStarSystem.put("habitablePlanets", new JSONArray(List.of(jsonEarth)));
+
+        JSONObject jsonMilkyWay = new JSONObject("{"
+                + "\"name\":\"Milky Way\","
+                + "\"age\":\"10000000000\","
+                + "\"knownSystems\":\"584\","
+                + "}");
+        jsonMilkyWay.put("habitableStarSystems", jsonStarSystem);
+        System.out.println(jsonMilkyWay);
     }
 }
