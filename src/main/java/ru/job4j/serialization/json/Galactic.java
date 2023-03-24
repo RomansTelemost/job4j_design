@@ -44,13 +44,13 @@ public class Galactic implements JsonSerializer<Galactic> {
         milkyWay.habitableStarSystems = new StarSystem[1];
         milkyWay.habitableStarSystems[0] = starSystem;
 
-        /**
-         * JSON Object from String
-         */
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String result = gson.toJson(milkyWay);
         java.lang.System.out.println(result);
 
+        /**
+         * JSON Object from String
+         */
         JSONObject jsonEarth = new JSONObject();
         jsonEarth.put("name", earthPlanet.name);
         jsonEarth.put("age", earthPlanet.age);
