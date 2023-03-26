@@ -2,6 +2,7 @@ package ru.job4j.generics;
 
 import ru.job4j.serialization.java.Contact;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Objects;
 
@@ -54,12 +55,30 @@ public class Person {
         this.birthday = birthday;
     }
 
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
+    }
+
+    public String[] getStatuses() {
+        return statuses;
+    }
+
+    public void setStatuses(String[] statuses) {
+        this.statuses = statuses;
+    }
+
     @Override
     public String toString() {
         return "Person{"
                 + "name='" + name + '\''
                 + ", age=" + age
                 + ", birthday=" + birthday
+                + ", contact=" + contact
+                + ", statuses=" + Arrays.toString(statuses)
                 + '}';
     }
 
