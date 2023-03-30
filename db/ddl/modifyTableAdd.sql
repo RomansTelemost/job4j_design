@@ -1,0 +1,1 @@
+alter table orders add description varchar(255);

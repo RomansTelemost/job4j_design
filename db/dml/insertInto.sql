@@ -1,0 +1,1 @@
+insert into orders(number, amount, description) values(1, 100.25, 'Hello! Where is my order!');
