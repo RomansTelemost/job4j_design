@@ -1,17 +1,17 @@
 create table role(
 	id serial primary key,
-	name varchar(255)
+	role_name varchar(255)
 );
 
 create table users(
 	id serial primary key,
-	name varchar(255),
+	user_name varchar(255),
 	role_id int references role(id)
 );
 
 create table rules(
 	id serial primary key,
-	name varchar(255)
+	rules_name varchar(255)
 );
 
 create table role_rules(
@@ -22,17 +22,17 @@ create table role_rules(
 
 create table category(
 	id serial primary key,
-	name varchar(255)
+	category_name varchar(255)
 );
 
 create table state(
 	id serial primary key,
-	name varchar(255)
+	state_name varchar(255)
 );
 
 create table item(
 	id serial primary key,
-	name varchar(255),
+	item_name varchar(255),
 	user_id int references users(id),
 	category_id int references category(id),
 	state_id int references state(id)
@@ -40,7 +40,7 @@ create table item(
 
 create table comments(
 	id serial primary key,
-	text varchar(255),
+	description varchar(255),
 	item_id int references item(id)
 );
 
@@ -49,5 +49,3 @@ create table attachs(
 	file_data bytea,
 	item_id int references item(id)
 );
-
-
