@@ -18,3 +18,11 @@ insert into contact(phone, customer_id) values('+7-913-222-99-44', 2);
 
 select cus.name, con.phone from customer as cus
 join contact as con on cus.id = con.customer_id;
+
+select cus.name, con.phone from customer as cus
+join contact as con on cus.id = con.customer_id
+where cus.name like 'Il%';
+
+select cus.name, con.phone from customer as cus
+join contact as con on cus.id = con.customer_id
+where con.phone not like '%99-44';
