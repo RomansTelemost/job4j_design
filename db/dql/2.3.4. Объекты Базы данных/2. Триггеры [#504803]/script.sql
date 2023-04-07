@@ -4,7 +4,7 @@ $$
     BEGIN
         update products
         set price = price + price * 0.2
-        where id = (select id from inserted) and count <= 5;
+        where id in (select id from inserted) and count <= 5;
         return new;
     END;
 $$
@@ -22,10 +22,8 @@ create or replace function tax_row()
     returns trigger as
 $$
     BEGIN
-        update products
-        set price = price + price * 0.2
-        where id = new.id;
-        return new;
+		new.price = new.price + new.price * 0.2;
+    	return new;
     END;
 $$
 LANGUAGE 'plpgsql';
@@ -42,12 +40,12 @@ create table if not exists history_of_price (
     date timestamp
 );
 
-create or replace procedure log_products()
+create or replace function log_products()
     returns trigger as
 $$
     BEGIN
         insert into history_of_price(name, price, date)
-        values(name, price, now());
+        values(new.name, new.price, now());
         return new;
     END;
 $$
