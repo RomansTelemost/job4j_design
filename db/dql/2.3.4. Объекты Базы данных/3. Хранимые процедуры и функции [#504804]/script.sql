@@ -40,4 +40,8 @@ as $$
     END;
 $$;
 
+call insert_data('item1', 'p1', 10, 100);
+call insert_data('item2', 'p2', 9, 100);
 
+call remove_less_data(10);
+--expected integer 2
