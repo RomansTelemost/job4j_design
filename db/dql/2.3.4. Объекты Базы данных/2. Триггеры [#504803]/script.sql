@@ -32,7 +32,7 @@ LANGUAGE 'plpgsql';
 
 create trigger tax_trig_row
     before insert on products
-    for each statement
+    for each row
     execute procedure tax_row();
 
 create table if not exists history_of_price (
