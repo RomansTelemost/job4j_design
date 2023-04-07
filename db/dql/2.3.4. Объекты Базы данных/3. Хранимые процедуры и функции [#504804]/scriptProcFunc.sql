@@ -51,3 +51,25 @@ $$
 $$;
 
 select f_insert_data('product_1', 'producer_1', 25, 50);
+
+create or replace function f_update_data(u_count integer, tax float, u_id integer)
+returns integer
+language 'plpgsql'
+as
+$$
+    declare
+        result integer;
+    begin
+        if u_count > 0 THEN
+            update products set count = count - u_count where id = u_id;
+            select into result count from products where id = u_id;
+        end if;
+        if tax > 0 THEN
+            update products set price = price + price * tax;
+            select into result sum(price) from products;
+        end if;
+        return result;
+    end;
+$$;
+
+select f_update_data(10, 0, 1);
