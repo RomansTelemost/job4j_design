@@ -11,7 +11,7 @@ public class ConnectionDemo {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         Config config = new Config("./src/main/resources/app.properties");
         config.load();
-        Class.forName(config.value("driver"));
+        Class.forName(config.value("driver_class"));
         try (Connection connection = DriverManager.getConnection(
                 config.value("url"),
                 config.value("login"),
