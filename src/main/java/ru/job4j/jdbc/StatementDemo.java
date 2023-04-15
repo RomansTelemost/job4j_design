@@ -24,6 +24,14 @@ public class StatementDemo {
                         "name TEXT"
                 );
                 statement.execute(sql);
+                //Возвращает true(если команда возвращает набор строк (SELECT)) or false
+
+                //executeUpdate()
+                //executeUpdate: выполняет такие команды, как INSERT, UPDATE, DELETE, CREATE TABLE, DROP TABLE
+                //В качестве результата возвращает количество строк, затронутых операцией (например, количество добавленных, измененных или удаленных строк)
+
+                //executeQuery: выполняет команду SELECT. Возвращает объект ResultSet, который содержит результаты запроса.
+
                 System.out.println(getTableScheme(connection, "demo_table"));
             }
         }
