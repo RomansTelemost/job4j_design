@@ -34,6 +34,7 @@ public class Menu {
 
     private static void start(CommentGenerator commentGenerator, Scanner scanner, UserGenerator userGenerator, PostStore postStore) {
         boolean run = true;
+        userGenerator.generate();
         while (run) {
             System.out.println(MENU);
             System.out.println(SELECT);
@@ -42,7 +43,6 @@ public class Menu {
             if (ADD_POST == userChoice) {
                 System.out.println(TEXT_OF_POST);
                 String text = scanner.nextLine();
-                userGenerator.generate();
                 commentGenerator.generate();
                 postStore.add(new Post(text, CommentGenerator.getComments()));
             } else if (ADD_MANY_POST == userChoice) {
@@ -50,7 +50,6 @@ public class Menu {
                 String text = scanner.nextLine();
                 System.out.println(COUNT);
                 String count = scanner.nextLine();
-                userGenerator.generate();
                 for (int i = 0; i < Integer.parseInt(count); i++) {
                     createPost(commentGenerator, postStore, text);
                 }
