@@ -1,0 +1,62 @@
+Информация о профилировании в папке gcAnalyze. Доступно в проектах job4j_Tracker, job4j_design.
+------------------------------
+Виды сборщиков:
+1. Serial GC.
+-XX:+UseSerialGC
+Example to run by command line "java -XX:+UseSerialGC -jar Application.java"
+Это самый простой вид сборщика. Он является Serial, Stop The World, Copying, т.е. выполняет сборку мусора в одном потоке, вызывается событие Stop The World и используется Copying сборку мусора. Подходит для простых клиентских приложений, к примеру проигрывателя музыки.
+Плюс: минимальные требования к среде. Минус: медленный.
+Пример распределения памяти:
+Если хип 12 мегабайт, значит ориентировочно объем old generation 8 мегабайт, а young generation 4 мегабайта (из них survive занимает 6 часть – 0,66 мегабайт. Значит survive 0 = 0.33 / survive 1 = 0,33, а eden 3.3 мегабайта, соответственно)
+
+
+2. Parallel GC. Sometimes called Throughput Collectors
+-XX:+UseParallelGC
+Example to run by command line "java -XX:+UseParallelGC -jar Application.java"
+- The numbers of garbage collector threads can be controlled with the command-line option -XX:ParallelGCThreads=<N>.
+
+Это усовершенствованная версия сборщика GC. Он является Parallel, Stop The World, Copying, т.е. его единственное отличие в том, что он выполняет сборку мусора в нескольких потоках. Подходит для более сложных клиентских приложений, где нет серьезных требований к скорости сборки, но ее наличие было бы неплохим преимуществом. К примеру, несложное приложение для работы с графикой.
+Плюс: пошустрее чем Serial GC. Минус: недостаточно быстрый, по сравнению с Serial требует наличие нескольких ядер.
+
+
+3. CMS (Concurrent Mark Sweep)
+-XX:+UseConcMarkSweepGC (доступен до JDK 14)
+Это улучшенная версия Parallel GC. Он является Parallel, Concurrent, Copying. Лучше прошлого он тем, что используется параллелизм, т.е. часть heap чиститься наряду с работой приложения. Подходит для клиентских приложений, где длительные паузы не допустимы, например, настольное приложения для торговли на бирже.
+С 9 версии утаревшим объявлен. Убран с JDK 14.
+Плюс: небольшие паузы на сборку мусора. Минус: более высокие системные требования.
+
+
+4. G1 (Garbage first)
+-XX:+UseG1GC
+Мощный сборщик сборщик мусора, усовершенствованная версия CMS. Он является Parallel, Concurrent, Copying. Его особенностью является высокая пропускная способность. Следовательно сборка мусора выполняется редко. Данный сборщик мусора используется для серверных приложений требующих быстрого отклика и не терпящих долгих пауз на сборку мусора.
+Плюс: скорость. Минус: нужен большой heap (> 4gb)
+- Since j8 We can enable this parameter by adding -XX:+UseStringDeduplication as a JVM parameter. to optimize string data in the heap
+- -XX:ParallelGCThreads=n -
+
+5. ZGC
+-XX:+UseZGC
+Данный сборщик появился недавно. Он является Parallel, Concurrent, Copying. Причем он использует параллелизм на полную мощь. Тем самым для очистки вовсе не требует остановки приложения, в отличие от G1, где паузы хоть и маленькие но присутствуют. Используется для приложений где допустимы лишь паузы < 10ms
+Плюс: нет паузы. Минус: требует сверх большой heap в несколько терабайтов для эффективной работы
+Доступен только с JDK 11.
+To enable the Z Garbage Collector, we can use the following argument in JDK versions lower than 15:
+java -XX:+UnlockExperimentalVMOptions -XX:+UseZGC Application.java
+
+
+Other vm option:
+-XX:+UnlockExperimentalVMOptions
+
+
+---------------------------------------------------------
+Можем увидеть лог сборщика в консоли:
+"-Xlog:gc*" или "-Xlog:gc:log.txt" - файл упадет в корень проекта
+(до JDK 9 нужно использовать -XX:-PrintGCDetails)
+
+
+MergeSort Начало сортировки - 19:09:45.690287200
+MergeSort Конец сортировки - 19:09:45.811990
+
+BubbleSort Начало сортировки - 19:09:52.689684100
+BubbleSort Конец сортировки - 19:10:54.934498400
+
+InsertSort Начало сортировки - 19:10:59.863643800
+InsertSort Конец сортировки - 19:11:02.891273100
