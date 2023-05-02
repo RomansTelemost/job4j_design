@@ -20,6 +20,7 @@ public class PostStore {
 
     public void removeAll() {
         posts.clear();
+        atomicInteger = new AtomicInteger(1);
     }
 
     public static Collection<Post> getPosts() {

@@ -12,7 +12,7 @@ public interface Generate {
 
     default List<String> read(String path) throws IOException {
         List<String> text = new ArrayList<>();
-        Files.lines(Paths.get(path))
+        Files.lines(Paths.get(path)).filter(line -> !line.isEmpty())
                 .forEach(text::add);
         return text;
     }
