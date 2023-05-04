@@ -9,9 +9,9 @@ import java.util.concurrent.TimeUnit;
 public class WeakDemo {
 
     public static void main(String[] args) throws InterruptedException {
-        //example1();
+        example1();
         example2();
-//    example3();
+        example3();
     }
 
     private static void example1() throws InterruptedException {
@@ -29,7 +29,6 @@ public class WeakDemo {
     }
 
     private static void example2() throws InterruptedException {
-//        List<ReferenceQueue<Object>> queue = new ArrayList<>(); //new ReferenceQueue<>();
         ReferenceQueue<Object> queue = new ReferenceQueue<>();
 
         List<WeakReference<Object>> objects = new ArrayList<>();
@@ -49,11 +48,11 @@ public class WeakDemo {
         int liveObjectCount = 0;
         Object qq = queue.poll();
         System.out.println(qq);
-//        for (WeakReference w : objects) {
-//            if (w.get() != null) {
-//                liveObjectCount++;
-//            }
-//        }
+        for (WeakReference w : objects) {
+            if (w.get() != null) {
+                liveObjectCount++;
+            }
+        }
         System.out.println(liveObjectCount);
     }
 
