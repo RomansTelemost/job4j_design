@@ -15,7 +15,7 @@ class GeneratorTest {
 
     private Map<String, String> map = new HashMap<>();
 
-    private static String TEMPLATE = "I am a ${name}, Who are ${subject}?";
+    private static final String TEMPLATE = "I am a ${name}, Who are ${subject}?";
     private static final String EXPECTED = "I am a name1, Who are subject1?";
 
     @BeforeEach
