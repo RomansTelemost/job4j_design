@@ -17,10 +17,11 @@ public class Cinema3D implements Cinema {
 
     @Override
     public Ticket buy(Account account, int row, int column, Calendar date) {
-        if (row < 0) {
-            throw new IllegalArgumentException("Row cannot less then 1");
+        if (row < 0
+                || column < 0) {
+            throw new IllegalArgumentException("Row or column cannot less then 1");
         }
-        return new Ticket3D();
+        return new Ticket3D(date);
     }
 
     @Override

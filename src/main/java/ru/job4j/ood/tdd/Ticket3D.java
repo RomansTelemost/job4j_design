@@ -1,11 +1,15 @@
 package ru.job4j.ood.tdd;
 
-import java.util.Date;
+import java.util.Calendar;
 import java.util.Objects;
 
 public class Ticket3D implements Ticket {
 
-    private Date date;
+    private Calendar date;
+
+    public Ticket3D(Calendar date) {
+        this.date = date;
+    }
 
     @Override
     public boolean equals(Object o) {

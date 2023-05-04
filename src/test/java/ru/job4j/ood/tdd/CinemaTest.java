@@ -18,7 +18,7 @@ class Cinema3DTest {
         Cinema cinema = new Cinema3D();
         Calendar date = Calendar.getInstance();
         Ticket ticket = cinema.buy(account, 1, 1, date);
-        assertThat(ticket).isEqualTo(new Ticket3D());
+        assertThat(ticket).isEqualTo(new Ticket3D(date));
     }
 
     @Test
@@ -26,7 +26,7 @@ class Cinema3DTest {
         Cinema cinema = new Cinema3D();
         Session session = new Session3D();
         cinema.add(session);
-        List<Session> sessions = cinema.find(ses -> true);
+        List<Session> sessions = cinema.find(ses -> ses.equals(session));
         assertThat(sessions).contains(session);
     }
 
@@ -36,6 +36,15 @@ class Cinema3DTest {
         Cinema cinema = new Cinema3D();
         Calendar date = Calendar.getInstance();
         assertThatThrownBy(() -> cinema.buy(account, -1, 1, date)).
+                isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    public void whenBuyOnInvalidColumnThenGetException() {
+        Account account = new AccountCinema();
+        Cinema cinema = new Cinema3D();
+        Calendar date = Calendar.getInstance();
+        assertThatThrownBy(() -> cinema.buy(account, 1, -1, date)).
                 isInstanceOf(IllegalArgumentException.class);
     }
 }
