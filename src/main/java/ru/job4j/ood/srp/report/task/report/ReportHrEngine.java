@@ -1,8 +1,8 @@
-package ru.job4j.ood.srp.reportTask.report;
+package ru.job4j.ood.srp.report.task.report;
 
-import ru.job4j.ood.srp.reportTask.formatter.DateTimeParser;
-import ru.job4j.ood.srp.reportTask.model.Employee;
-import ru.job4j.ood.srp.reportTask.model.Store;
+import ru.job4j.ood.srp.report.task.formatter.DateTimeParser;
+import ru.job4j.ood.srp.report.task.model.Employee;
+import ru.job4j.ood.srp.report.task.model.Store;
 
 import java.util.Calendar;
 import java.util.function.Predicate;

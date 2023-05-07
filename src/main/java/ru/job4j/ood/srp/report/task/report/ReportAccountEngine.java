@@ -1,10 +1,10 @@
-package ru.job4j.ood.srp.reportTask.report;
+package ru.job4j.ood.srp.report.task.report;
 
-import ru.job4j.ood.srp.reportTask.currency.Currency;
-import ru.job4j.ood.srp.reportTask.currency.CurrencyConverter;
-import ru.job4j.ood.srp.reportTask.formatter.DateTimeParser;
-import ru.job4j.ood.srp.reportTask.model.Employee;
-import ru.job4j.ood.srp.reportTask.model.Store;
+import ru.job4j.ood.srp.report.task.currency.Currency;
+import ru.job4j.ood.srp.report.task.currency.CurrencyConverter;
+import ru.job4j.ood.srp.report.task.formatter.DateTimeParser;
+import ru.job4j.ood.srp.report.task.model.Employee;
+import ru.job4j.ood.srp.report.task.model.Store;
 
 import java.text.DecimalFormat;
 import java.util.Calendar;

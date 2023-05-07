@@ -1,4 +1,4 @@
-package ru.job4j.ood.srp.reportTask.model;
+package ru.job4j.ood.srp.report.task.model;
 
 import java.util.Calendar;
 import java.util.Objects;

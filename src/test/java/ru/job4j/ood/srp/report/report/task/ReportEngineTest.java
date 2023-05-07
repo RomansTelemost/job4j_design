@@ -1,13 +1,14 @@
-package ru.job4j.ood.srp.reportTask.report;
+package ru.job4j.ood.srp.report.report.task;
 
 import org.junit.jupiter.api.Test;
-import ru.job4j.ood.srp.reportTask.currency.Currency;
-import ru.job4j.ood.srp.reportTask.currency.CurrencyConverter;
-import ru.job4j.ood.srp.reportTask.currency.InMemoryCurrencyConverter;
-import ru.job4j.ood.srp.reportTask.formatter.DateTimeParser;
-import ru.job4j.ood.srp.reportTask.formatter.ReportDateTimeParser;
-import ru.job4j.ood.srp.reportTask.model.Employee;
-import ru.job4j.ood.srp.reportTask.model.MemStore;
+import ru.job4j.ood.srp.report.task.currency.Currency;
+import ru.job4j.ood.srp.report.task.currency.CurrencyConverter;
+import ru.job4j.ood.srp.report.task.currency.InMemoryCurrencyConverter;
+import ru.job4j.ood.srp.report.task.formatter.DateTimeParser;
+import ru.job4j.ood.srp.report.task.formatter.ReportDateTimeParser;
+import ru.job4j.ood.srp.report.task.model.Employee;
+import ru.job4j.ood.srp.report.task.model.MemStore;
+import ru.job4j.ood.srp.report.task.report.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
