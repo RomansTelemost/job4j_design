@@ -7,14 +7,10 @@ import ru.job4j.ood.srp.reportTask.model.Store;
 import java.util.Calendar;
 import java.util.function.Predicate;
 
-public class ReportEngine implements Report {
+public class ReportItEngine extends ReportEngine {
 
-    protected final Store store;
-    protected final DateTimeParser<Calendar> dateTimeParser;
-
-    public ReportEngine(Store store, DateTimeParser<Calendar> dateTimeParser) {
-        this.store = store;
-        this.dateTimeParser = dateTimeParser;
+    public ReportItEngine(Store store, DateTimeParser<Calendar> dateTimeParser) {
+        super(store, dateTimeParser);
     }
 
     @Override
@@ -23,9 +19,9 @@ public class ReportEngine implements Report {
         text.append("Name; Hired; Fired; Salary;")
                 .append(System.lineSeparator());
         for (Employee employee : store.findBy(filter)) {
-            text.append(employee.getName()).append(" ")
-                    .append(dateTimeParser.parse(employee.getHired())).append(" ")
-                    .append(dateTimeParser.parse(employee.getFired())).append(" ")
+            text.append(employee.getName()).append("; ")
+                    .append(dateTimeParser.parse(employee.getHired())).append("; ")
+                    .append(dateTimeParser.parse(employee.getFired())).append("; ")
                     .append(employee.getSalary())
                     .append(System.lineSeparator());
         }
