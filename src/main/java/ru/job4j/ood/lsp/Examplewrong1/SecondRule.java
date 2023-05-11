@@ -1,4 +1,4 @@
-package ru.job4j.ood.lsp.ExampleWrong1;
+package ru.job4j.ood.lsp.Examplewrong1;
 
 import java.time.LocalDate;
 import java.time.Month;
