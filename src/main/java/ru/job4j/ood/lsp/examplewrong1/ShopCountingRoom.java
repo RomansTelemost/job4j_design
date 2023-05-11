@@ -1,4 +1,4 @@
-package ru.job4j.ood.lsp.Examplewrong1;
+package ru.job4j.ood.lsp.examplewrong1;
 
 public class ShopCountingRoom extends CountingRoom {
 

@@ -1,4 +1,4 @@
-package ru.job4j.ood.lsp.Examplewrong1;
+package ru.job4j.ood.lsp.examplewrong1;
 
 import java.time.LocalDate;
 import java.util.Iterator;
