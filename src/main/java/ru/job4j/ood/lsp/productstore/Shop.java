@@ -4,15 +4,18 @@ import java.time.temporal.ValueRange;
 
 public class Shop extends AbstractStore {
 
-    public Shop(int percentOfProductConditionFrom, int percentOfProductConditionTo) {
+    private final int discountPercent;
+
+    public Shop(int percentOfProductConditionFrom, int percentOfProductConditionTo, int discountPercent) {
         super(percentOfProductConditionFrom, percentOfProductConditionTo);
+        this.discountPercent = discountPercent;
     }
 
     @Override
     public void evaluate(Food food, long consistency) {
         if (consistency > percentOfProductConditionFrom
                 && consistency <= percentOfProductConditionTo) {
-            food.setDiscount(20);
+            food.setDiscount(discountPercent);
             storeFoods.add(food);
             return;
         }

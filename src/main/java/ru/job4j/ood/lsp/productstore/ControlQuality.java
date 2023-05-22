@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
-public class ControlQuality {
+public class ControlQuality implements Quality {
 
     private List<Store> storeList;
 
@@ -12,15 +12,20 @@ public class ControlQuality {
         this.storeList = storeList;
     }
 
+    @Override
     public void determineFoodStore(LocalDate currentDate, Food food) {
         LocalDate createDate = food.getCreateDate();
-        LocalDate ex = food.getExpiryDate();
-        long days = ChronoUnit.DAYS.between(createDate, ex);
-        long daysTillNow = ChronoUnit.DAYS.between(createDate, currentDate);
-        long expiredPercent = (long) (((double) daysTillNow / days) * 100);
+        long expirationDate = ChronoUnit.DAYS.between(createDate, food.getExpiryDate());
+        long expirationDateTillNow = ChronoUnit.DAYS.between(createDate, currentDate);
+        long expiredPercent = (long) (((double) expirationDateTillNow / expirationDate) * 100);
 
         for (Store store : storeList) {
             store.evaluate(food, expiredPercent);
         }
+    }
+
+    @Override
+    public List<Store> getStoreList() {
+        return storeList;
     }
 }
