@@ -1,4 +1,4 @@
-package ru.job4j.ood.lsp.whongdesign;
+package ru.job4j.ood.isp.whongdesign;
 
 import com.sun.nio.sctp.IllegalReceiveException;
 
