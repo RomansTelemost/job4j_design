@@ -39,4 +39,9 @@ public class WorkTaskManager implements TaskManager {
         task.setComplete(true);
         return true;
     }
+
+    @Override
+    public void sendStatusToReporter(Task task) {
+        System.out.println(String.format("Task id %s, has status %s, responsible person %s", task.getId(), task.getTaskStatus(), task.getResponsible()));
+    }
 }

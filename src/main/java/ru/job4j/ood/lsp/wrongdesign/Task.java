@@ -9,8 +9,10 @@ public class Task {
     private String description;
     private LocalDate createDate;
     private LocalDate expirationDate;
+    private String reporter;
     private String responsible;
     private boolean complete = false;
+    private TaskStatus taskStatus;
 
     public Task() {
     }
@@ -55,6 +57,14 @@ public class Task {
         this.expirationDate = expirationDate;
     }
 
+    public String getReporter() {
+        return reporter;
+    }
+
+    public void setReporter(String reporter) {
+        this.reporter = reporter;
+    }
+
     public String getResponsible() {
         return responsible;
     }
@@ -69,5 +79,13 @@ public class Task {
 
     public void setComplete(boolean complete) {
         this.complete = complete;
+    }
+
+    public TaskStatus getTaskStatus() {
+        return taskStatus;
+    }
+
+    public void setTaskStatus(TaskStatus taskStatus) {
+        this.taskStatus = taskStatus;
     }
 }

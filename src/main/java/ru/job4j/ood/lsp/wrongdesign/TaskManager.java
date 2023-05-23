@@ -10,4 +10,5 @@ public interface TaskManager {
     Task getTask(int id);
     boolean setResponsible(Task task, String responsible);
     boolean setComplete(Task task);
+    void sendStatusToReporter(Task task);
 }
