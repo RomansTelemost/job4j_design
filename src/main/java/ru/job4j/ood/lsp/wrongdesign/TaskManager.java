@@ -1,5 +1,9 @@
 package ru.job4j.ood.lsp.wrongdesign;
 
+/**
+ * Выполняет роль и хранилища и сервиса. Установки ответственного и признака завершен.
+ * Лучше тогда выделить setResponsible, setComplete в отдельный интерфейс TaskManagerService
+ */
 public interface TaskManager {
 
     void addTask(Task task);
