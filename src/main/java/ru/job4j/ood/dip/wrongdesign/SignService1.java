@@ -14,11 +14,11 @@ import java.util.stream.Collectors;
  * В классе signDocuments что в параметре метода, что в возвращаемом типе указать
  * "public DataStore signDocuments(Signer signer, DataStore documents)"
  */
-public class SignService {
+public class SignService1 {
 
     private static final PrintStream LOG = System.out;
 
-    public SignService() throws Exception {
+    public SignService1() throws Exception {
         LOG.write("create SignService object".getBytes());
     }
 
