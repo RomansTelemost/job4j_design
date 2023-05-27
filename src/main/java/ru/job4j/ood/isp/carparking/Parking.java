@@ -5,9 +5,9 @@ import java.util.List;
 public interface Parking {
 
     boolean park(Vehicle vehicle);
-
     boolean unPark(Vehicle vehicle);
-
-    int getFreeParkingPlace();
-    List<Vehicle> getParkedVehicles();
+    int getPassengerCarParkSize();
+    int getTrackParkSize();
+    List<Vehicle> getParkedPassengerCar();
+    List<Vehicle> getParkedTrack();
 }
