@@ -4,11 +4,16 @@ import java.time.temporal.ValueRange;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractStore implements Store {
+public abstract class AbstractStore implements Store, Cloneable {
 
     protected int percentOfProductConditionFrom;
     protected int percentOfProductConditionTo;
     protected List<Food> storeFoods;
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 
     public AbstractStore(int percentOfProductConditionFrom, int percentOfProductConditionTo) {
         this.percentOfProductConditionFrom = percentOfProductConditionFrom;

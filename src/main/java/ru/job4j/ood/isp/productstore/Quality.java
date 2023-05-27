@@ -8,4 +8,6 @@ public interface Quality {
     void determineFoodStore(LocalDate currentDate, Food food);
 
     List<Store> getStoreList();
+
+    void resort();
 }

@@ -14,7 +14,7 @@ class ControlQualityTest {
     public Quality controlQuality;
 
     @BeforeEach
-    public void ps() {
+    public void init() {
         List<Store> storeList = new ArrayList<>();
         storeList.add(new Warehouse(0, 25));
         storeList.add(new Shop(25, 99, 10));
@@ -60,6 +60,24 @@ class ControlQualityTest {
 
         controlQuality.determineFoodStore(LocalDate.of(2023, 05, 10), food);
         List<Food> foodList = controlQuality.getStoreList().get(2).getStoreFoods();
+        assertThat(foodList.size()).isEqualTo(1);
+        assertThat(foodList.get(0).discount).isEqualTo(0);
+    }
+
+    @Test
+    public void whenExpiration20PercentThenWarehouseAndAfterResortPutToTrash() {
+        Food food = new Food("Milk",
+                LocalDate.of(2023, 5, 10),
+                LocalDate.of(2023, 5, 1),
+                100,
+                0);
+
+        controlQuality.determineFoodStore(LocalDate.of(2023, 05, 2), food);
+        List<Food> foodList = controlQuality.getStoreList().get(0).getStoreFoods();
+        assertThat(foodList.size()).isEqualTo(1);
+        assertThat(foodList.get(0).discount).isEqualTo(0);
+        controlQuality.resort();
+        foodList = controlQuality.getStoreList().get(2).getStoreFoods();
         assertThat(foodList.size()).isEqualTo(1);
         assertThat(foodList.get(0).discount).isEqualTo(0);
     }
