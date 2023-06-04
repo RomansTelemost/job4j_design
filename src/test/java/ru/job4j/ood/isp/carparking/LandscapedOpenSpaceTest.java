@@ -88,7 +88,7 @@ class LandscapedOpenSpaceTest {
     }
 
     @Test
-    public void whenOnePassengerCarInWholeParksThenUnParkPassengerCarFromPassengerPark_ThenTrue() {
+    public void whenOnePassengerCarInWholeParksThenUnParkPassengerCarFromPassengerParkThenTrue() {
         LandscapedOpenSpace parking = new LandscapedOpenSpace(4, 2);
         Vehicle passengerCar = new PassengerCar();
         parking.park(passengerCar);
@@ -99,7 +99,7 @@ class LandscapedOpenSpaceTest {
     }
 
     @Test
-    public void whenPassengerParkIsFullThenPassengerCarPlacesInTrackParkThenUnParkPassengerCarFromTrackPark_ThenTrue() {
+    public void whenPassengerParkIsFullThenPassengerCarPlacesInTrackParkThenUnParkPassengerCarFromTrackParkThenTrue() {
         LandscapedOpenSpace parking = new LandscapedOpenSpace(1, 2);
         Vehicle passengerCar1 = new PassengerCar();
         Vehicle passengerCar2 = new PassengerCar();
