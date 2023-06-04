@@ -19,11 +19,50 @@ public class LandscapedOpenSpace implements Parking {
 
     @Override
     public boolean park(Vehicle vehicle) {
+        if (parkedPassengerCars.contains(vehicle)
+                || parkedTracks.contains(vehicle)) {
+            return false;
+        }
+        if (vehicle.getSize() == 1
+                && passengerCarParkSize >= 1) {
+            parkedPassengerCars.add(vehicle);
+            passengerCarParkSize--;
+            return true;
+        }
+        if (vehicle.getSize() > 1
+                && trackParkSize >= 1) {
+            parkedTracks.add(vehicle);
+            trackParkSize--;
+            return true;
+        }
+        if (vehicle.getSize() == 1
+                && trackParkSize >= 1) {
+            parkedTracks.add(vehicle);
+            trackParkSize--;
+            return true;
+        }
+        if (vehicle.getSize() > 1
+                && passengerCarParkSize >= vehicle.getSize()) {
+            parkedPassengerCars.add(vehicle);
+            passengerCarParkSize -= vehicle.getSize();
+            return true;
+        }
         return false;
     }
 
     @Override
     public boolean unPark(Vehicle vehicle) {
+        if (parkedPassengerCars.contains(vehicle)) {
+            parkedPassengerCars.remove(vehicle);
+            passengerCarParkSize += vehicle.getSize();
+            return true;
+        }
+
+        if (parkedTracks.contains(vehicle)) {
+            parkedTracks.remove(vehicle);
+            trackParkSize += vehicle.getSize();
+            return true;
+        }
         return false;
     }
 
